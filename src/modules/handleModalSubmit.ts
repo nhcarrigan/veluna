@@ -177,6 +177,7 @@ export const handleModalSubmit = async(
           type: 1,
         },
       ],
+      flags: [ MessageFlags.IsComponentsV2 ],
     });
     await message.delete();
     await interaction.editReply({
