@@ -134,7 +134,9 @@ export const handleModalSubmit = async(
     await channel.send({
       components: [
         {
-          components: [
+          // eslint-disable-next-line @typescript-eslint/naming-convention -- Discord API.
+          accent_color: null,
+          components:   [
             {
               content: `# ${question}`,
               type:    10,
