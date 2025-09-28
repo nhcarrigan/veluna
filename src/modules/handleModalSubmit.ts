@@ -47,6 +47,12 @@ export const handleModalSubmit = async(
       });
       return;
     }
+    if (record.blockedUsers.includes(interaction.user.id)) {
+      await interaction.editReply({
+        content: "You are blocked from asking questions in this server.",
+      });
+      return;
+    }
     const question = interaction.fields.getTextInputValue("textinput");
     const channel
       = veluna.discord.channels.cache.get(record.questionChannelId)
@@ -69,6 +75,13 @@ export const handleModalSubmit = async(
               custom_id: "answer",
               label:     "Answer this question",
               style:     3,
+              type:      2,
+            },
+            {
+              // eslint-disable-next-line @typescript-eslint/naming-convention -- Discord API.
+              custom_id: `block-${interaction.user.id}`,
+              label:     "Block user",
+              style:     4,
               type:      2,
             },
           ],
@@ -159,5 +172,6 @@ export const handleModalSubmit = async(
         },
       ],
     });
+    await message.delete();
   }
 };

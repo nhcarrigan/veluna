@@ -32,7 +32,7 @@ veluna.discord.on(Events.InteractionCreate, (interaction) => {
     return;
   }
   if (interaction.isButton()) {
-    void handleButton(interaction);
+    void handleButton(veluna, interaction);
   }
   if (interaction.isModalSubmit()) {
     void handleModalSubmit(veluna, interaction);
