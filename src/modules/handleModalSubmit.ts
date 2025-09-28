@@ -117,7 +117,7 @@ export const handleModalSubmit = async(
       });
       return;
     }
-    const { message, fields } = interaction;
+    const { message, fields, user } = interaction;
     if (!message) {
       await interaction.editReply({
         content: "An error occurred while fetching the message.",
@@ -146,7 +146,8 @@ export const handleModalSubmit = async(
       return;
     }
     await channel.send({
-      components: [
+      allowedMentions: { parse: [] },
+      components:      [
         {
           // eslint-disable-next-line @typescript-eslint/naming-convention -- Discord API.
           accent_color: null,
@@ -168,6 +169,10 @@ export const handleModalSubmit = async(
               divider: true,
               spacing: 1,
               type:    14,
+            },
+            {
+              content: `*Answered by <@${user.id}>*`,
+              type:    10,
             },
             {
               content: `-# Brought to you by [NHCarrigan](<https://chat.nhcarrigan.com>)`,
@@ -192,14 +197,14 @@ export const handleModalSubmit = async(
               label:    "Donate to Naomi?",
               style:    5,
               type:     2,
-              url:      "https://google.com",
+              url:      "https://donate.nhcarrigan.com",
             },
             {
               disabled: false,
               label:    "NHCarrigan Discord",
               style:    5,
               type:     2,
-              url:      "https://google.com",
+              url:      "https://chat.nhcarrigan.com",
             },
           ],
           type: 1,
