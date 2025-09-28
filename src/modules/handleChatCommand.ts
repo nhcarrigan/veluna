@@ -20,10 +20,10 @@ interface Query {
 }
 
 const buildQuery = (type: string, id: string): Query => {
-  if (type === "question") {
+  if (type === "questions") {
     return { questionChannelId: id };
   }
-  if (type === "answer") {
+  if (type === "answers") {
     return { answerChannelId: id };
   }
   return {};
