@@ -104,4 +104,8 @@ export const handleChatCommand = async(
       serverId: guild.id,
     },
   });
+
+  await interaction.editReply({
+    content: `This server's ${commandName} channel has been set to <#${channel.id}>.`,
+  });
 };
