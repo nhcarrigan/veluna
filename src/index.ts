@@ -27,18 +27,21 @@ veluna.discord.once(Events.ClientReady, () => {
   );
 });
 
-veluna.discord.on(Events.InteractionCreate, (interaction) => {
+// eslint-disable-next-line @typescript-eslint/no-misused-promises -- Top-level await.
+veluna.discord.on(Events.InteractionCreate, async(interaction) => {
   if (!interaction.inCachedGuild()) {
     return;
   }
   if (interaction.isButton()) {
-    void handleButton(veluna, interaction);
+    await handleButton(veluna, interaction);
+    return;
   }
   if (interaction.isModalSubmit()) {
-    void handleModalSubmit(veluna, interaction);
+    await handleModalSubmit(veluna, interaction);
+    return;
   }
   if (interaction.isChatInputCommand()) {
-    void handleChatCommand(veluna, interaction);
+    await handleChatCommand(veluna, interaction);
   }
 });
 
