@@ -90,6 +90,10 @@ export const handleModalSubmit = async(
       ],
       content: question,
     });
+    await interaction.editReply({
+      content: "Your question has been submitted.",
+    });
+    return;
   }
 
   if (interaction.customId === "answer") {
@@ -173,5 +177,8 @@ export const handleModalSubmit = async(
       ],
     });
     await message.delete();
+    await interaction.editReply({
+      content: "Your answer has been submitted.",
+    });
   }
 };
